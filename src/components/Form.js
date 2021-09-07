@@ -1,14 +1,17 @@
-import React from "react";
-import { makeAPIRequest } from "./APIquery";
+import React, { useState } from "react";
+import APIquery from "./APIquery";
 
 const Form = (props) => {
+  const [search, setSearch] = useState("");
+  const [submittedSearch, setSubmittedSearch] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    makeAPIRequest(props.search);
+    setSubmittedSearch(search); //comment out when developing and not testing
   };
 
   const handleSearchChange = (e) => {
-    props.setSearch(e.target.value);
+    setSearch(e.target.value);
     // console.log(e.target.value);
   };
 
@@ -20,42 +23,19 @@ const Form = (props) => {
           <input
             type="text"
             onChange={handleSearchChange}
-            value={props.search}
+            value={search}
             className="form-control"
             id="animeTitleInput"
             placeholder="Enter anime title"
           ></input>
         </div>
       </form>
-      {/* <div className="row">
-          <div className="col-sm-3">
-            <input
-              type="text"
-              onChange={handleNameChange}
-              value={props.name}
-              placeholder="Enter anime title"
-            ></input>
-          </div>
-          <div className="col-sm-3">
-            <input
-              type="text"
-              onChange={handlePriceChange}
-              value={props.price}
-              placeholder="Enter product price"
-            ></input>
-          </div>
-          <div className="col-sm-3">
-            <input
-              type="text"
-              onChange={handleDescChange}
-              value={props.desc}
-              placeholder="Enter product description"
-            ></input>
-          </div>
-          <div className="col-sm-3">
-            <button type="submit">Submit</button>
-          </div>
-        </div> */}
+      <APIquery
+        submittedSearch={submittedSearch}
+        setSubmittedSearch={setSubmittedSearch}
+        setAnimeItemData={props.setAnimeItemData}
+        animeItemData={props.animeItemData}
+      />
     </React.Fragment>
   );
 };

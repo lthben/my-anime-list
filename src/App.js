@@ -4,17 +4,21 @@ import Form from "./components/Form";
 import AnimeList from "./components/AnimeList";
 
 const App = () => {
-  const [search, setSearch] = useState("");
   // const [rating, setRating] = useState(0);
   // const [yearWatched, setYearWatched] = useState(2000);
 
-  // const [animeItem, setAnimeItem] = useState({});
-  const [animeList, setAnimeList] = useState([]);
+  const [animeItemData, setAnimeItemData] = useState({});
+  const [animeList, setAnimeList] = useState([]); //array of animeItemData objects
 
   return (
     <div className="container">
-      <Form search={search} setSearch={setSearch} />
-      <AnimeList animeList={animeList} />
+      <Form setAnimeItemData={setAnimeItemData} />
+      <AnimeList
+        animeItemData={animeItemData}
+        setAnimeItemData={setAnimeItemData}
+        animeList={animeList}
+        setAnimeList={setAnimeList}
+      />
     </div>
   );
 };
