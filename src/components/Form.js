@@ -1,96 +1,63 @@
 import React from "react";
+import { makeAPIRequest } from "./APIquery";
 
-function Form() {
-  // Here we define our query as a multi-line string
-  // Storing it in a separate .graphql/.gql file is also possible
-  let query = `
-query ($search: String) {
-  Media (search: $search, type: ANIME, format: TV) { 
-    id
-    title {
-      romaji
-      english
-    }
-    format
-    bannerImage
-    coverImage {
-        medium
-    }
-    status
-    description
-
-    episodes
-    seasonYear
-    countryOfOrigin
-    meanScore
-    tags {
-        name
-        description 
-    }
-    genres
-    characters (sort: ROLE, role: MAIN) {
-      nodes {
-        name {
-          full
-        }
-      }
-      edges {
-        role
-      }
-    }
-  }
-}
-`;
-
-  // Define our query variables and values that will be used in the query request
-  let variables = {
-    search: "future diary",
+const Form = (props) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    makeAPIRequest(props.search);
   };
 
-  // Define the config we'll need for our Api request
-  let url = "https://graphql.anilist.co",
-    options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        query: query,
-        variables: variables,
-      }),
-    };
-
-  // Make the HTTP Api request
-  function makeApiRequest() {
-    fetch(url, options)
-      .then(handleResponse)
-      .then(handleData)
-      .catch(handleError);
-  }
-
-  function handleResponse(response) {
-    return response.json().then(function (json) {
-      return response.ok ? json : Promise.reject(json);
-    });
-  }
-
-  function handleData(data) {
-    console.log(data);
-  }
-
-  function handleError(error) {
-    alert("Error, check console");
-    console.error(error);
-  }
+  const handleSearchChange = (e) => {
+    props.setSearch(e.target.value);
+    // console.log(e.target.value);
+  };
 
   return (
-    <div>
-      <button type="submit" onClick={makeApiRequest}>
-        Submit
-      </button>
-    </div>
+    <React.Fragment>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="animeTitleInput">Anime title</label>
+          <input
+            type="text"
+            onChange={handleSearchChange}
+            value={props.search}
+            className="form-control"
+            id="animeTitleInput"
+            placeholder="Enter anime title"
+          ></input>
+        </div>
+      </form>
+      {/* <div className="row">
+          <div className="col-sm-3">
+            <input
+              type="text"
+              onChange={handleNameChange}
+              value={props.name}
+              placeholder="Enter anime title"
+            ></input>
+          </div>
+          <div className="col-sm-3">
+            <input
+              type="text"
+              onChange={handlePriceChange}
+              value={props.price}
+              placeholder="Enter product price"
+            ></input>
+          </div>
+          <div className="col-sm-3">
+            <input
+              type="text"
+              onChange={handleDescChange}
+              value={props.desc}
+              placeholder="Enter product description"
+            ></input>
+          </div>
+          <div className="col-sm-3">
+            <button type="submit">Submit</button>
+          </div>
+        </div> */}
+    </React.Fragment>
   );
-}
+};
 
 export default Form;
