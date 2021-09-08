@@ -10,6 +10,8 @@ const APIquery = (props) => {
   const handleData = (data) => {
     // console.log("in APIquery: ", data.data.Media);
     let myObj = data.data.Media;
+    myObj.userRating = "";
+    myObj.yearWatched = "";
     props.setAnimeItem(myObj);
   };
 

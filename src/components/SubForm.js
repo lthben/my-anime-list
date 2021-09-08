@@ -1,14 +1,20 @@
 import React from "react";
 
 const SubForm = (props) => {
-  const handleRatingSubmit = async (e) => {
-    e.preventDefault();
-    let newRating = document.getElementById("userRatingInput").value;
+  const handleRatingSubmit = () => {
+    let id = "userRatingInput" + props.item.id;
+    let rating = document.getElementById(id).value;
+    // console.log("in SubForm, rating: ", rating);
+    props.setEdit(!props.edit);
+    props.setEditInfo({ id: props.item.id, field: "userRating", val: rating });
   };
 
-  const handleYearSubmit = async (e) => {
-    e.preventDefault();
-    let newYear = document.getElementById("userYearInput").value;
+  const handleYearSubmit = () => {
+    let id = "userYearInput" + props.item.id;
+    let year = document.getElementById(id).value;
+    // console.log("in SubForm year: ", year);
+    props.setEdit(!props.edit);
+    props.setEditInfo({ id: props.item.id, field: "yearWatched", val: year });
   };
 
   return (
@@ -17,20 +23,20 @@ const SubForm = (props) => {
       <label htmlFor="userRatingInput">Enter rating: </label>
       <input
         type="number"
-        id="userRatingInput"
-        placeholder={props.item.userRating}
+        id={"userRatingInput" + props.item.id}
+        placeholder="e.g. 50"
       ></input>
-      <button type="submit" onClick={handleRatingSubmit}>
+      <button type="button" onClick={handleRatingSubmit}>
         Submit
       </button>
       <p>Year Watched: {props.item.yearWatched}</p>
       <label htmlFor="userYearInput">Enter year watched (YYYY): </label>
       <input
         type="number"
-        id="userYearInput"
-        placeholder={props.item.yearWatched}
+        id={"userYearInput" + props.item.id}
+        placeholder="e.g. 2000"
       ></input>
-      <button type="submit" onClick={handleYearSubmit}>
+      <button type="button" onClick={handleYearSubmit}>
         Submit
       </button>
     </form>

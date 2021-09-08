@@ -3,8 +3,8 @@ import SubForm from "./SubForm";
 import FeaturedItem from "./FeaturedItem";
 
 const AnimeListItem = (props) => {
-  const [userRatings, setUserRatings] = useState([]);
-  const [watchYears, setWatchYears] = useState([]);
+  //   const [userRatings, setUserRatings] = useState([]);
+  //   const [watchYears, setWatchYears] = useState([]);
   const [isDetailsHidden, setIsDetailsHidden] = useState(true);
 
   const handleDetailsButton = () => {
@@ -35,15 +35,23 @@ const AnimeListItem = (props) => {
       <SubForm
         key={props.index}
         item={props.item}
-        userRatings={userRatings}
-        setUserRatings={setUserRatings}
-        watchYears={watchYears}
-        setWatchYears={setWatchYears}
+        edit={props.edit}
+        setEdit={props.setEdit}
+        editInfo={props.editInfo}
+        setEditInfo={props.setEditInfo}
+        // userRatings={userRatings}
+        // setUserRatings={setUserRatings}
+        // watchYears={watchYears}
+        // setWatchYears={setWatchYears}
       />
-      <button id="setIsDetailsHidden" onClick={handleDetailsButton}>
+      <button
+        id="setIsDetailsHidden"
+        type="button"
+        onClick={handleDetailsButton}
+      >
         Details
       </button>
-      <button id={props.index} onClick={handleRemoveButton}>
+      <button id={props.index} type="button" onClick={handleRemoveButton}>
         Remove
       </button>
       {!isDetailsHidden && <FeaturedItem item={props.item} />}
