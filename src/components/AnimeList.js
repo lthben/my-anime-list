@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import AnimeListItem from "./AnimeListItem";
 
 const AnimeList = (props) => {
   const addToList = () => {
+    console.log("adding to list");
     props.setAnimeList((prevstate) => {
-      return [props.animeItemData, ...prevstate];
+      let a = [...prevstate, props.animeItem];
+      return a.filter((value) => Object.keys(value).length !== 0); //filter out initial empty object state
     });
 
-    // props.setAnimeList(props.animeList.unshift(props.animeItemData));
-    console.log("animeList: ", props.animeList);
-    // console.log("animeItemData", props.animeItemData);
+    // console.log("animeList: ", props.animeList); //don't put here cos setState takes a while
+    // console.log("animeItem", props.animeItem?.data);
   };
 
-  useEffect(addToList, [props.animeItemData]);
+  useEffect(addToList, [props.animeItem]);
 
-  const handleClick = () => {};
-
-  const animeItems = props.animeList.map((ele, index) => {
-    return (
-      <li id={index} onClick={handleClick} key={index}>
-        #{index + 1}
-      </li>
-    );
+  const animeItems = props.animeList.map((item, index) => {
+    return <AnimeListItem item={item} index={index} key={index} />;
   });
+
+  console.log("anime list: ", props.animeList);
 
   return (
     <div>

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import animeItem from "./AnimeItem";
 
 const APIquery = (props) => {
   const handleResponse = (response) => {
@@ -9,8 +8,8 @@ const APIquery = (props) => {
   };
 
   const handleData = (data) => {
-    console.log(data);
-    props.setAnimeItemData(data);
+    // console.log("in APIquery: ", data.data.Media);
+    props.setAnimeItem(data.data.Media);
   };
 
   const handleError = (error) => {
@@ -88,10 +87,9 @@ const APIquery = (props) => {
 
   useEffect(() => {
     makeAPIRequest();
-
-    // return () => {
-    //   props.setSubmittedSearch(""); //need to clean up, else will take prev submittedSearch as input
-    // };
+    return () => {
+      props.setSubmittedSearch("");
+    };
   }, [props.submittedSearch]);
 
   return <div></div>;

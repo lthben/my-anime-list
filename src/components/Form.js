@@ -16,7 +16,7 @@ const Form = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="animeTitleInput">Anime title</label>
@@ -33,10 +33,9 @@ const Form = (props) => {
       <APIquery
         submittedSearch={submittedSearch}
         setSubmittedSearch={setSubmittedSearch}
-        setAnimeItemData={props.setAnimeItemData}
-        animeItemData={props.animeItemData}
+        setAnimeItem={props.setAnimeItem}
       />
-    </React.Fragment>
+    </div>
   );
 };
 
