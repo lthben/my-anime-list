@@ -1,10 +1,5 @@
 import React from "react";
 
-// title, bannerImage, coverImage(large), description, characters (MAIN only)
-// genres, tags(name, description (expandable))
-// seasonYear, episodes, CountryOfOrigin, status,
-// meanScore
-
 const FeaturedItem = (props) => {
   const desc = props.item.description;
   let _genres = props.item.genres;

@@ -9,7 +9,8 @@ const APIquery = (props) => {
 
   const handleData = (data) => {
     // console.log("in APIquery: ", data.data.Media);
-    props.setAnimeItem(data.data.Media);
+    let myObj = data.data.Media;
+    props.setAnimeItem(myObj);
   };
 
   const handleError = (error) => {

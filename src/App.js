@@ -9,12 +9,12 @@ const App = () => {
 
   const [animeItem, setAnimeItem] = useState({});
   const [animeList, setAnimeList] = useState([]); //array of animeItem objects
-
   return (
     <div className="container">
       <Form setAnimeItem={setAnimeItem} />
       <AnimeList
         animeItem={animeItem}
+        setAnimeItem={setAnimeItem}
         animeList={animeList}
         setAnimeList={setAnimeList}
       />
