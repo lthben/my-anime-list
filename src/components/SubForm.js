@@ -7,6 +7,7 @@ const SubForm = (props) => {
     // console.log("in SubForm, rating: ", rating);
     props.setEdit(!props.edit);
     props.setEditInfo({ id: props.item.id, field: "userRating", val: rating });
+    document.getElementById(id).value = "";
   };
 
   const handleYearSubmit = () => {
@@ -15,6 +16,7 @@ const SubForm = (props) => {
     // console.log("in SubForm year: ", year);
     props.setEdit(!props.edit);
     props.setEditInfo({ id: props.item.id, field: "yearWatched", val: year });
+    document.getElementById(id).value = "";
   };
 
   return (

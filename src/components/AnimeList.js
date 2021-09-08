@@ -27,17 +27,17 @@ const AnimeList = (props) => {
 
   const editList = () => {
     let index = animeList.findIndex((ele) => ele.id === editInfo.id);
-    console.log("in animelist, index ", index);
+    // console.log("in animelist, index ", index);
     let nestedCopy = JSON.parse(JSON.stringify(animeList));
     if (editInfo.field === "userRating") {
-      console.log("field: ", editInfo.field);
-      console.log("index: ", index);
-      console.log("val: ", editInfo.val);
+      // console.log("field: ", editInfo.field);
+      // console.log("index: ", index);
+      // console.log("val: ", editInfo.val);
       nestedCopy[index].userRating = editInfo.val;
     } else if (editInfo.field === "yearWatched") {
-      console.log("field: ", editInfo.field);
-      console.log("index: ", index);
-      console.log("val: ", editInfo.val);
+      // console.log("field: ", editInfo.field);
+      // console.log("index: ", index);
+      // console.log("val: ", editInfo.val);
       nestedCopy[index].yearWatched = editInfo.val;
     }
     setAnimeList(nestedCopy);
@@ -50,8 +50,39 @@ const AnimeList = (props) => {
     setSortYear(!sortYear);
   };
 
-  const sortListByRating = () => {};
-  const sortListByRating = () => {};
+  const sortListByRating = () => {
+    let nestedCopy = JSON.parse(JSON.stringify(animeList));
+    if (sortRatings)
+      nestedCopy.sort((a, b) =>
+        a.userRating > b.userRating ? 1 : b.userRating > a.userRating ? -1 : 0
+      );
+    else
+      nestedCopy.sort((a, b) =>
+        a.userRating < b.userRating ? 1 : b.userRating < a.userRating ? -1 : 0
+      );
+    setAnimeList(nestedCopy);
+  };
+
+  const sortListByYear = () => {
+    let nestedCopy = JSON.parse(JSON.stringify(animeList));
+    if (sortYear)
+      nestedCopy.sort((a, b) =>
+        a.yearWatched > b.yearWatched
+          ? 1
+          : b.yearWatched > a.yearWatched
+          ? -1
+          : 0
+      );
+    else
+      nestedCopy.sort((a, b) =>
+        a.yearWatched < b.yearWatched
+          ? 1
+          : b.yearWatched < a.yearWatched
+          ? -1
+          : 0
+      );
+    setAnimeList(nestedCopy);
+  };
 
   useEffect(() => {
     addToList();
