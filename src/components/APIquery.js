@@ -30,7 +30,8 @@ const APIquery = (props) => {
                 format
                 bannerImage
                 coverImage {
-                    medium
+                  large
+                  medium
                 }
                 description
                 characters (sort: ROLE, role: MAIN) {
