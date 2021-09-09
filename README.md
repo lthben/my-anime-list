@@ -2,7 +2,7 @@
 
 Create your own recorded list of favourite anime!
 
-Check out the app at the following link:
+Check out the app at the following link.
 
 Live site URL: https://my-anime-list-gasei31.netlify.app
 
