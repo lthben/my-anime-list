@@ -127,15 +127,21 @@ const AnimeList = (props) => {
   });
 
   return (
-    <div>
-      <button type="button" id="sortByRatingBtn" onClick={sortByRating}>
-        Ratings
-      </button>
-      <button type="button" id="sortByYearBtn" onClick={sortByYear}>
-        Year Watched
-      </button>
+    <React.Fragment>
+      <div className="row justify-content-center quarter-row-height">
+        <div className="col-sm-12">
+          <span className="label-input funFont">Sort: </span>
+          <button type="button" id="sortByRatingBtn" onClick={sortByRating}>
+            My Scores
+          </button>
+          <button type="button" id="sortByYearBtn" onClick={sortByYear}>
+            Year Watched
+          </button>
+        </div>
+      </div>
+      {/* Here the magic happens */}
       {animeItems}
-    </div>
+    </React.Fragment>
   );
 };
 

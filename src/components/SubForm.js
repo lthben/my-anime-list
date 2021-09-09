@@ -20,28 +20,56 @@ const SubForm = (props) => {
   };
 
   return (
-    <form>
-      <p>My Score Rating: {props.item.userRating} / 100</p>
-      <label htmlFor="userRatingInput">Enter rating: </label>
-      <input
-        type="number"
-        id={"userRatingInput" + props.item.id}
-        placeholder="e.g. 50"
-      ></input>
-      <button type="button" onClick={handleRatingSubmit}>
-        Submit
-      </button>
-      <p>Year Watched: {props.item.yearWatched}</p>
-      <label htmlFor="userYearInput">Enter year watched (YYYY): </label>
-      <input
-        type="number"
-        id={"userYearInput" + props.item.id}
-        placeholder="e.g. 2000"
-      ></input>
-      <button type="button" onClick={handleYearSubmit}>
-        Submit
-      </button>
-    </form>
+    <React.Fragment>
+      <div className="col-sm-2 row-height has-border-right">
+        <p>My Score ( /100):</p>
+        <p className="field-height field-text funFont">
+          {props.item.userRating}
+        </p>
+        {/* <label htmlFor="userRatingInput" className="funFont label-input"> */}
+        {/* Enter rating:{" "} */}
+        {/* </label> */}
+        <div className="row no-padding ">
+          <div className="col-7 ">
+            <input
+              type="number"
+              id={"userRatingInput" + props.item.id}
+              placeholder="e.g. 50"
+              className="small-input-width"
+            ></input>
+          </div>
+          <div className="col-5 ">
+            <button type="button" onClick={handleRatingSubmit}>
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="col-sm-2 has-border-right">
+        <p>Year Watched (YYYY):</p>
+        <p className="field-height field-text funFont">
+          {props.item.yearWatched}
+        </p>
+        {/* <label htmlFor="userYearInput" className="funFont label-input"> */}
+        {/* Enter year watched (YYYY):{" "} */}
+        {/* </label> */}
+        <div className="row no-padding ">
+          <div className="col-7 ">
+            <input
+              type="number"
+              id={"userYearInput" + props.item.id}
+              placeholder="e.g. 2000"
+              className="small-input-width"
+            ></input>
+          </div>
+          <div className="col-5 ">
+            <button type="button" onClick={handleYearSubmit}>
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 

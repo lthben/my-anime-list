@@ -1,3 +1,68 @@
-.App {
+div {
+  /* border: solid 1px lightgrey; */
+}
+
+.has-border {
+  border: solid 1px #0549a5;
+}
+/* Luffy colour palette: https://www.color-hex.com/color-palette/96968 */
+
+.has-border-right {
+  border-right: solid 1px #0549a5;
+}
+
+.vertical-centre {
+  vertical-align: middle;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #00b9ff;
   text-align: center;
+}
+.row-height {
+  height: 150px;
+}
+
+.half-row-height {
+  height: 75px;
+}
+
+.quarter-row-height {
+  height: 38px;
+}
+
+.field-height {
+  height: 50px;
+}
+
+.field-text {
+  font-size: xx-large;
+}
+
+.subfield-text {
+  font-size: larger;
+}
+.funFont {
+  font-family: "Bubblegum Sans", cursive;
+}
+
+#main-title-text {
+  font-size: xx-large;
+}
+
+.label-input {
+  font-size: large;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.small-input-width {
+  width: 120px;
+}
+
+.search-input-width {
+  width: 360px;
 }

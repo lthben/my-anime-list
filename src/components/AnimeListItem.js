@@ -8,13 +8,13 @@ const AnimeListItem = (props) => {
   const [isDetailsHidden, setIsDetailsHidden] = useState(true);
 
   const handleDetailsButton = () => {
-    console.log("in deatails button");
+    console.log("in details button");
     setIsDetailsHidden(!isDetailsHidden);
   };
 
   const handleRemoveButton = (e) => {
     // e.preventDefault();
-    console.log("in handelremovetbutton");
+    console.log("in handleremovebutton");
     console.log("e.target.id: ", e.target.id);
     let index = e.target.id;
     props.setRemove(!props.remove);
@@ -26,36 +26,50 @@ const AnimeListItem = (props) => {
   desc += " ...";
 
   return (
-    <div>
-      #{props.index + 1}
-      <img src={props.item.coverImage.medium} />
-      {props.item.title.english}
-      <div dangerouslySetInnerHTML={{ __html: desc }} />
-      {/* SubForm to get userRating and yearWatched */}
-      <SubForm
-        key={props.index}
-        item={props.item}
-        edit={props.edit}
-        setEdit={props.setEdit}
-        editInfo={props.editInfo}
-        setEditInfo={props.setEditInfo}
-        // userRatings={userRatings}
-        // setUserRatings={setUserRatings}
-        // watchYears={watchYears}
-        // setWatchYears={setWatchYears}
-      />
-      <button
-        id="setIsDetailsHidden"
-        type="button"
-        onClick={handleDetailsButton}
-      >
-        Details
-      </button>
-      <button id={props.index} type="button" onClick={handleRemoveButton}>
-        Remove
-      </button>
+    <React.Fragment>
+      <div className="row row-height d-flex has-border">
+        <div className="col-sm-1 row-height d-flex align-items-center justify-content-center field-text funFont">
+          #{props.index + 1}
+        </div>
+        <div className="col-sm-1 no-padding row-height d-flex align-items-center justify-content-center">
+          <img src={props.item.coverImage.medium} alt="cover pic medium" />
+        </div>
+        <div className="col-sm-1 has-border-right row-height d-flex align-items-center justify-content-center">
+          <span className="align-middle subfield-text funFont">
+            {props.item.title.english}
+          </span>
+        </div>
+        <div className="col-sm-4  row-height has-border-right d-flex align-items-center justify-content-center">
+          <span dangerouslySetInnerHTML={{ __html: desc }} />
+        </div>
+        {/* SubForm to get userRating and yearWatched */}
+        <SubForm
+          key={props.index}
+          item={props.item}
+          edit={props.edit}
+          setEdit={props.setEdit}
+          editInfo={props.editInfo}
+          setEditInfo={props.setEditInfo}
+        />
+        <div className="col-sm-1 row-height ">
+          <div className="half-row-height d-flex align-items-center justify-content-center">
+            <button
+              id="setIsDetailsHidden"
+              type="button"
+              onClick={handleDetailsButton}
+            >
+              Details
+            </button>
+          </div>
+          <div className="half-row-height d-flex align-items-center justify-content-center">
+            <button id={props.index} type="button" onClick={handleRemoveButton}>
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
       {!isDetailsHidden && <FeaturedItem item={props.item} />}
-    </div>
+    </React.Fragment>
   );
 };
 

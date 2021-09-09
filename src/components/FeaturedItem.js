@@ -22,12 +22,23 @@ const FeaturedItem = (props) => {
   characters = characters.toString();
 
   return (
-    <div>
-      <img src={props.item.bannerImage} />
-      <img src={props.item.coverImage.large} />
-      <p>Description: </p>
-      <p dangerouslySetInnerHTML={{ __html: desc }}></p>
-      <p>Main characters: {characters}</p>
+    <div className="row">
+      <div className="col-12">
+        <img src={props.item.bannerImage} alt="banner pic" />
+      </div>
+      <div className="row">
+        <div className="col-2">
+          <img src={props.item.coverImage.large} alt="cover pic" />
+        </div>
+        <div className="col-10">
+          <p className="funFont">Main characters: {characters}</p>
+          <p className="funFont">Description: </p>
+          <p dangerouslySetInnerHTML={{ __html: desc }}></p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12"></div>
+      </div>
       <p>Genres: {genres} </p>
       <p>Tags: {tags}</p>
       <p>Year Released: {props.item.seasonYear}</p>
