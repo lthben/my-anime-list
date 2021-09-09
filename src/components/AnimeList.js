@@ -7,22 +7,22 @@ const AnimeList = (props) => {
   const [editInfo, setEditInfo] = useState({ id: "", field: "", val: "" });
   const [edit, setEdit] = useState(false);
 
-  const addToList = () => {
+  useEffect(() => {
     // console.log("adding to list");
     props.setAnimeList((prevstate) => {
       let a = [...prevstate, props.animeItem];
       return a.filter((value) => Object.keys(value).length !== 0); //filter out initial empty object state
     });
-  };
+  }, [props.animeItem]);
 
-  const removeFromList = (index) => {
+  useEffect(() => {
     // console.log("in RemoveFromList");
     let nestedCopy = JSON.parse(JSON.stringify(props.animeList));
-    nestedCopy.splice(index, 1);
+    nestedCopy.splice(removeIndex, 1);
     props.setAnimeList(nestedCopy);
-  };
+  }, [removeIndex, remove]);
 
-  const editList = () => {
+  useEffect(() => {
     let index = props.animeList.findIndex((ele) => ele.id === editInfo.id);
     // console.log("in animelist, index ", index);
     let nestedCopy = JSON.parse(JSON.stringify(props.animeList));
@@ -38,9 +38,9 @@ const AnimeList = (props) => {
       nestedCopy[index].yearWatched = editInfo.val;
     }
     props.setAnimeList(nestedCopy);
-  };
+  }, [editInfo, edit]);
 
-  const sortListByRating = () => {
+  useEffect(() => {
     let nestedCopy = JSON.parse(JSON.stringify(props.animeList));
     if (props.sortRatings)
       nestedCopy.sort((a, b) =>
@@ -51,9 +51,9 @@ const AnimeList = (props) => {
         a.userRating < b.userRating ? 1 : b.userRating < a.userRating ? -1 : 0
       );
     props.setAnimeList(nestedCopy);
-  };
+  }, [props.sortRatings]);
 
-  const sortListByYear = () => {
+  useEffect(() => {
     let nestedCopy = JSON.parse(JSON.stringify(props.animeList));
     if (props.sortYear)
       nestedCopy.sort((a, b) =>
@@ -72,26 +72,6 @@ const AnimeList = (props) => {
           : 0
       );
     props.setAnimeList(nestedCopy);
-  };
-
-  useEffect(() => {
-    addToList();
-  }, [props.animeItem]);
-
-  useEffect(() => {
-    removeFromList(removeIndex);
-  }, [removeIndex, remove]);
-
-  useEffect(() => {
-    editList();
-  }, [editInfo, edit]);
-
-  useEffect(() => {
-    sortListByRating();
-  }, [props.sortRatings]);
-
-  useEffect(() => {
-    sortListByYear();
   }, [props.sortYear]);
 
   const animeItems = props.animeList.map((item, index) => {
