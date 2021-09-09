@@ -2,6 +2,10 @@
 
 Create your own recorded list of favourite anime!
 
+Check out the app at the following link:
+
+Live site URL: https://my-anime-list-gasei31.netlify.app
+
 Steps:
 
 1. Enter the anime title to retrieve information from the Anilist API.
