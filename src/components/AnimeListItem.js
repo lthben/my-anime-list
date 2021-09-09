@@ -27,20 +27,23 @@ const AnimeListItem = (props) => {
 
   return (
     <React.Fragment>
-      <div className="row row-height d-flex has-border">
-        <div className="col-sm-1 row-height d-flex align-items-center justify-content-center field-text funFont">
+      <div className="row row-height d-flex has-border has-margin">
+        <div className="col-sm-1 row-height d-flex align-items-center justify-content-center field-text funFont bkgd-red">
           #{props.index + 1}
         </div>
-        <div className="col-sm-1 no-padding row-height d-flex align-items-center justify-content-center">
+        <div className="col-sm-1 no-padding row-height d-flex align-items-center justify-content-center bkgd-red">
           <img src={props.item.coverImage.medium} alt="cover pic medium" />
         </div>
-        <div className="col-sm-1 has-border-right row-height d-flex align-items-center justify-content-center">
+        <div className="col-sm-1 has-border-right row-height d-flex align-items-center justify-content-center bkgd-red">
           <span className="align-middle subfield-text funFont">
             {props.item.title.english}
           </span>
         </div>
-        <div className="col-sm-4  row-height has-border-right d-flex align-items-center justify-content-center">
-          <span dangerouslySetInnerHTML={{ __html: desc }} />
+        <div className="col-sm-4  row-height has-border-right d-flex align-items-center justify-content-center bkgd-darkblue">
+          <span
+            className="short-desc-text"
+            dangerouslySetInnerHTML={{ __html: desc }}
+          />
         </div>
         {/* SubForm to get userRating and yearWatched */}
         <SubForm
@@ -51,18 +54,24 @@ const AnimeListItem = (props) => {
           editInfo={props.editInfo}
           setEditInfo={props.setEditInfo}
         />
-        <div className="col-sm-1 row-height ">
+        <div className="col-sm-1 row-height bkgd-orange ">
           <div className="half-row-height d-flex align-items-center justify-content-center">
             <button
               id="setIsDetailsHidden"
               type="button"
               onClick={handleDetailsButton}
+              className="btn btn-info"
             >
               Details
             </button>
           </div>
           <div className="half-row-height d-flex align-items-center justify-content-center">
-            <button id={props.index} type="button" onClick={handleRemoveButton}>
+            <button
+              id={props.index}
+              type="button"
+              onClick={handleRemoveButton}
+              className="btn-sm btn-danger"
+            >
               Remove
             </button>
           </div>

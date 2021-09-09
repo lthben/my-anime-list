@@ -22,31 +22,51 @@ const FeaturedItem = (props) => {
   characters = characters.toString();
 
   return (
-    <div className="row">
-      <div className="col-12">
-        <img src={props.item.bannerImage} alt="banner pic" />
-      </div>
-      <div className="row">
-        <div className="col-2">
-          <img src={props.item.coverImage.large} alt="cover pic" />
+    <React.Fragment>
+      <div className="row row-margin bkgd-white ">
+        <div className="col-12">
+          <img src={props.item.bannerImage} alt="banner pic" width="100%" />
         </div>
-        <div className="col-10">
-          <p className="funFont">Main characters: {characters}</p>
+      </div>
+      <div className="row  row-margin bkgd-white">
+        <div className="col-12">
+          <p></p>
+          <p className="funFont">Main characters: </p>
+          <p>{characters}</p>
           <p className="funFont">Description: </p>
           <p dangerouslySetInnerHTML={{ __html: desc }}></p>
+          <p className="funFont">Genres: </p>
+          <p>{genres} </p>
+          <p className="funFont">Tags: </p>
+          <p>{tags}</p>
         </div>
       </div>
-      <div className="row">
-        <div className="col-12"></div>
+      <div className="row d-flex align-items-center justify-content-center row-margin bkgd-white">
+        <div className="col-2 ">
+          <img src={props.item.coverImage.large} alt="cover pic" width="100%" />
+        </div>
+        <div className="col-2 ">
+          <p className="funFont">Year Released: </p>
+          <p>{props.item.seasonYear}</p>
+        </div>
+        <div className="col-2 ">
+          <p className="funFont">Episodes: </p>
+          <p>{props.item.episodes}</p>
+        </div>
+        <div className="col-2 ">
+          <p className="funFont">Country of Origin: </p>
+          <p>{props.item.countryOfOrigin}</p>
+        </div>
+        <div className="col-2 ">
+          <p className="funFont">Status: </p>
+          <p>{props.item.status}</p>
+        </div>
+        <div className="col-2 ">
+          <p className="funFont">Public Score Rating: </p>
+          <p>{props.item.meanScore} / 100</p>
+        </div>
       </div>
-      <p>Genres: {genres} </p>
-      <p>Tags: {tags}</p>
-      <p>Year Released: {props.item.seasonYear}</p>
-      <p>Episodes: {props.item.episodes}</p>
-      <p>Country of Origin: {props.item.countryOfOrigin}</p>
-      <p>Status: {props.item.status}</p>
-      <p>Public Score Rating: {props.item.meanScore} / 100</p>
-    </div>
+    </React.Fragment>
   );
 };
 

@@ -2,23 +2,25 @@ div {
   /* border: solid 1px lightgrey; */
 }
 
-.has-border {
-  border: solid 1px #0549a5;
+body {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  background-image: url("https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg");
+  /* background-size: cover; */
+  background-size: 100%;
+  /* background: #00b9ff; */
 }
-/* Luffy colour palette: https://www.color-hex.com/color-palette/96968 */
+
+.has-border {
+  border: solid 1px white;
+}
 
 .has-border-right {
-  border-right: solid 1px #0549a5;
+  border-right: solid 1px white;
 }
 
 .vertical-centre {
   vertical-align: middle;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
-  background: #00b9ff;
-  text-align: center;
 }
 .row-height {
   height: 150px;
@@ -49,20 +51,54 @@ body {
 
 #main-title-text {
   font-size: xx-large;
+  color: white;
 }
 
 .label-input {
   font-size: large;
 }
 
+.short-desc-text {
+  color: white;
+  font-size: small;
+}
+
 .no-padding {
   padding: 0;
 }
 
-.small-input-width {
-  width: 120px;
+.row-margin {
+  margin: 0 5px;
+}
+
+.btn-margin {
+  margin: 0 5px;
 }
 
 .search-input-width {
   width: 360px;
+}
+
+.bkgd-red {
+  background: #a90000;
+}
+
+.bkgd-darkblue {
+  background: #0549a5;
+}
+
+.bkgd-yellow {
+  background: #dfd500;
+}
+
+.bkgd-orange {
+  background: #ffb300;
+}
+
+.bkgd-white {
+  background: white;
+}
+
+.has-margin {
+  margin: 1px 0;
 }

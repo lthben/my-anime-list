@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import APIquery from "./APIquery";
+import SortButtons from "./SortButtons";
 
 const Form = (props) => {
   const [search, setSearch] = useState("");
@@ -24,9 +25,16 @@ const Form = (props) => {
         </div>
       </div>
       <div className="row half-row-height  d-flex align-items-center justify-content-center">
+        <div className="col-4">
+          <APIquery
+            submittedSearch={submittedSearch}
+            setSubmittedSearch={setSubmittedSearch}
+            setAnimeItem={props.setAnimeItem}
+          />
+        </div>
         <form
-          onSubmit={handleSubmit}
           className="col-4 form-group half-row-height d-flex align-items-center justify-content-center"
+          onSubmit={handleSubmit}
         >
           <input
             type="text"
@@ -37,11 +45,16 @@ const Form = (props) => {
             placeholder="Enter anime title"
           ></input>
         </form>
-        <APIquery
-          submittedSearch={submittedSearch}
-          setSubmittedSearch={setSubmittedSearch}
-          setAnimeItem={props.setAnimeItem}
-        />
+        <div className="col-4">
+          <SortButtons
+            animeList={props.animeList}
+            setAnimeList={props.setAnimeList}
+            sortRatings={props.sortRatings}
+            setSortRatings={props.setSortRatings}
+            sortYear={props.sortYear}
+            setSortYear={props.setSortYear}
+          />
+        </div>
       </div>
     </React.Fragment>
   );
