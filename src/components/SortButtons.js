@@ -10,13 +10,13 @@ const SortButtons = (props) => {
 
   return (
     <React.Fragment>
-      <div className="row justify-content-center quarter-row-height">
-        <div className="col-sm-12">
+      <div className="row justify-content-center">
+        <div className="col-12">
           <button
             type="button"
             id="sortByRatingBtn"
             onClick={sortByRating}
-            className="btn btn-primary btn-margin"
+            className="btn-sm btn-light btn-margin"
           >
             My Scores
           </button>
@@ -24,7 +24,7 @@ const SortButtons = (props) => {
             type="button"
             id="sortByYearBtn"
             onClick={sortByYear}
-            className="btn btn-primary btn-margin"
+            className="btn-sm btn-light btn-margin"
           >
             Year Watched
           </button>

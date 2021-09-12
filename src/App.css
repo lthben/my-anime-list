@@ -1,14 +1,22 @@
+/* Luffy colour palette: https://www.color-hex.com/color-palette/96968  */
+
 div {
-  /* border: solid 1px lightgrey; */
+  border: solid 1px lightgrey;
 }
 
-body {
+body,
+html {
   font-family: "Roboto", sans-serif;
   text-align: center;
-  background-image: url("https://s4.anilist.co/file/anilistcdn/media/anime/banner/21-wf37VakJmZqs.jpg");
-  /* background-size: cover; */
-  background-size: 100%;
-  /* background: #00b9ff; */
+  height: 100%;
+}
+
+.bg {
+  background: url("./media/wallpaper-one-piece-luffy.jpeg");
+  height: 100vh;
+  background-position: center;
+  /* background-repeat: repeat; */
+  background-size: cover;
 }
 
 .has-border {
@@ -22,29 +30,7 @@ body {
 .vertical-centre {
   vertical-align: middle;
 }
-.row-height {
-  height: 150px;
-}
 
-.half-row-height {
-  height: 75px;
-}
-
-.quarter-row-height {
-  height: 38px;
-}
-
-.field-height {
-  height: 50px;
-}
-
-.field-text {
-  font-size: xx-large;
-}
-
-.subfield-text {
-  font-size: larger;
-}
 .funFont {
   font-family: "Bubblegum Sans", cursive;
 }
@@ -52,6 +38,8 @@ body {
 #main-title-text {
   font-size: xx-large;
   color: white;
+  text-shadow: 2px 2px #00b9ff;
+  margin: 0.5em auto;
 }
 
 .label-input {
@@ -72,7 +60,7 @@ body {
 }
 
 .btn-margin {
-  margin: 0 5px;
+  margin: 5px 5px;
 }
 
 .search-input-width {

@@ -21,8 +21,7 @@ const APIquery = (props) => {
     console.error(error);
   };
 
-  const makeAPIRequest = () => {
-    let query = `
+  let query = `
         query ($search: String) {
             Media (search: $search, type: ANIME, format: TV) { 
                 id
@@ -61,25 +60,26 @@ const APIquery = (props) => {
         }
     `;
 
-    // Define our query variables and values that will be used in the query request
-    let variables = {
-      search: props.submittedSearch,
+  // Define our query variables and values that will be used in the query request
+  let variables = {
+    search: props.submittedSearch,
+  };
+
+  // Define the config we'll need for our Api request
+  let url = "https://graphql.anilist.co",
+    options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        query: query,
+        variables: variables,
+      }),
     };
 
-    // Define the config we'll need for our Api request
-    let url = "https://graphql.anilist.co",
-      options = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          query: query,
-          variables: variables,
-        }),
-      };
-
+  useEffect(() => {
     if (props.submittedSearch.length > 0) {
       console.log("fetching based on submittedSearch: ", props.submittedSearch);
       fetch(url, options)
@@ -87,10 +87,6 @@ const APIquery = (props) => {
         .then(handleData)
         .catch(handleError);
     }
-  };
-
-  useEffect(() => {
-    makeAPIRequest();
     return () => {
       props.setSubmittedSearch("");
     };

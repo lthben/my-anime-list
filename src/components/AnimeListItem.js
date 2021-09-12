@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SubForm from "./SubForm";
 import FeaturedItem from "./FeaturedItem";
 
 const AnimeListItem = (props) => {
@@ -25,56 +24,98 @@ const AnimeListItem = (props) => {
   desc = desc.substring(0, 255);
   desc += " ...";
 
+  const tags = props.item.genres.map((ele, ind) => {
+    return (
+      <>
+        <span key={ind} className="badge bg-secondary">
+          {ele}
+        </span>
+        &nbsp;
+      </>
+    );
+  });
+
+  const handleRatingSubmit = (e) => {
+    e.preventDefault();
+    let id = "userRatingInput" + props.item.id;
+    let rating = document.getElementById(id).value;
+    // console.log("in SubForm, rating: ", rating);
+    props.setEdit(!props.edit);
+    props.setEditInfo({
+      id: props.item.id,
+      field: "userRating",
+      val: rating,
+    });
+    document.getElementById(id).value = "";
+  };
+
+  const handleYearSubmit = (e) => {
+    e.preventDefault();
+    let id = "userYearInput" + props.item.id;
+    let year = document.getElementById(id).value;
+    // console.log("in SubForm year: ", year);
+    props.setEdit(!props.edit);
+    props.setEditInfo({ id: props.item.id, field: "yearWatched", val: year });
+    document.getElementById(id).value = "";
+  };
+
   return (
     <React.Fragment>
-      <div className="row row-height d-flex has-border has-margin">
-        <div className="col-sm-1 row-height d-flex align-items-center justify-content-center field-text funFont bkgd-red">
+      <div className="row d-flex has-border has-margin">
+        <div className="col-2 col-lg-1  d-flex align-items-center justify-content-center bkgd-red">
           #{props.index + 1}
         </div>
-        <div className="col-sm-1 no-padding row-height d-flex align-items-center justify-content-center bkgd-red">
-          <img src={props.item.coverImage.medium} alt="cover pic medium" />
+        <div className="col-2 col-lg-1  d-flex align-items-center justify-content-center bkgd-red">
+          {props.item.title.english}
         </div>
-        <div className="col-sm-1 has-border-right row-height d-flex align-items-center justify-content-center bkgd-red">
-          <span className="align-middle subfield-text funFont">
-            {props.item.title.english}
-          </span>
+        <div className="col-8 col-lg-4  has-border-right  bkgd-darkblue">
+          {tags}
         </div>
-        <div className="col-sm-4  row-height has-border-right d-flex align-items-center justify-content-center bkgd-darkblue">
-          <span
-            className="short-desc-text"
-            dangerouslySetInnerHTML={{ __html: desc }}
+        <form
+          className="col-2 col-lg-1 form-group has-border-right bkgd-yellow d-flex align-items-center"
+          onSubmit={handleRatingSubmit}
+        >
+          <input
+            type="number"
+            className=" form-control-sm w-100"
+            id={"userRatingInput" + props.item.id}
+            placeholder="/100"
           />
+        </form>
+        <div className="col-2 col-lg-1 has-border-right bkgd-yellow d-flex align-items-center justify-content-center funFont">
+          {props.item.userRating}
         </div>
-        {/* SubForm to get userRating and yearWatched */}
-        <SubForm
-          key={props.index}
-          item={props.item}
-          edit={props.edit}
-          setEdit={props.setEdit}
-          editInfo={props.editInfo}
-          setEditInfo={props.setEditInfo}
-        />
-        <div className="col-sm-1 row-height bkgd-orange ">
-          <div className="half-row-height d-flex align-items-center justify-content-center">
-            <button
-              id="setIsDetailsHidden"
-              type="button"
-              onClick={handleDetailsButton}
-              className="btn btn-info"
-            >
-              Details
-            </button>
-          </div>
-          <div className="half-row-height d-flex align-items-center justify-content-center">
-            <button
-              id={props.index}
-              type="button"
-              onClick={handleRemoveButton}
-              className="btn-sm btn-danger"
-            >
-              Remove
-            </button>
-          </div>
+        <form
+          className="col-2 col-lg-1 form-group has-border-right bkgd-yellow d-flex align-items-center"
+          onSubmit={handleYearSubmit}
+        >
+          <input
+            type="number"
+            className="form-control-sm w-100"
+            id={"userYearInput" + props.item.id}
+            placeholder="yyyy"
+          />
+        </form>
+        <div className="col-2 col-lg-1  has-border-right d-flex align-items-center justify-content-center bkgd-yellow funFont">
+          {props.item.yearWatched}
+        </div>
+        <div className="col-4 col-lg-2 bkgd-orange d-flex align-items-center justify-content-evenly">
+          <button
+            id="setIsDetailsHidden"
+            type="button"
+            onClick={handleDetailsButton}
+            className="btn-sm btn-light"
+          >
+            Details
+          </button>
+          <button
+            id={props.index}
+            type="button"
+            onClick={handleRemoveButton}
+            className="btn-sm btn-danger"
+          >
+            Remove
+          </button>
         </div>
       </div>
       {!isDetailsHidden && <FeaturedItem item={props.item} />}

@@ -19,33 +19,27 @@ const Form = (props) => {
 
   return (
     <React.Fragment>
-      <div className="row funFont half-row-height" id="main-title-text">
-        <div className="col-sm-12 d-flex align-items-center justify-content-center">
+      <div className="row funFont">
+        <div
+          className="col-12 d-flex align-items-center justify-content-center"
+          id="main-title-text"
+        >
           My Anime List
         </div>
       </div>
-      <div className="row half-row-height  d-flex align-items-center justify-content-center">
-        <div className="col-4">
-          <APIquery
-            submittedSearch={submittedSearch}
-            setSubmittedSearch={setSubmittedSearch}
-            setAnimeItem={props.setAnimeItem}
-          />
-        </div>
+      <div className="row d-flex align-items-center justify-content-center">
         <form
-          className="col-4 form-group half-row-height d-flex align-items-center justify-content-center"
+          className="col-12  input-group  d-flex align-items-center justify-content-center"
           onSubmit={handleSubmit}
         >
           <input
             type="text"
             onChange={handleSearchChange}
             value={search}
-            className="form-control "
+            className="form-control-sm "
             id="animeTitleInput"
             placeholder="Enter anime title"
           ></input>
-        </form>
-        <div className="col-4">
           <SortButtons
             animeList={props.animeList}
             setAnimeList={props.setAnimeList}
@@ -54,8 +48,13 @@ const Form = (props) => {
             sortYear={props.sortYear}
             setSortYear={props.setSortYear}
           />
-        </div>
+        </form>
       </div>
+      <APIquery
+        submittedSearch={submittedSearch}
+        setSubmittedSearch={setSubmittedSearch}
+        setAnimeItem={props.setAnimeItem}
+      />
     </React.Fragment>
   );
 };

@@ -10,7 +10,7 @@ const App = () => {
   const [sortYear, setSortYear] = useState(false);
 
   return (
-    <div className="container">
+    <div className="container bg">
       <Form
         setAnimeItem={setAnimeItem}
         animeList={animeList}
@@ -20,6 +20,7 @@ const App = () => {
         sortYear={sortYear}
         setSortYear={setSortYear}
       />
+      <br />
       <AnimeList
         animeItem={animeItem}
         setAnimeItem={setAnimeItem}
