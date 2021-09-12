@@ -20,10 +20,6 @@ const AnimeListItem = (props) => {
     props.setRemoveIndex(index);
   };
 
-  let desc = props.item.description;
-  desc = desc.substring(0, 255);
-  desc += " ...";
-
   const tags = props.item.genres.map((ele, ind) => {
     return (
       <>
@@ -59,15 +55,19 @@ const AnimeListItem = (props) => {
     document.getElementById(id).value = "";
   };
 
+  let shortenedTitle = props.item.title.english;
+  shortenedTitle = shortenedTitle.replace(/(\r\n|\n|\r)/gm, "");
+  let completeTitle = "#" + (props.index + 1) + " " + shortenedTitle;
+  let limit = 38;
+  if (completeTitle.length > limit) {
+    completeTitle = completeTitle.substring(0, limit - 3);
+    completeTitle += "...";
+  }
+
   return (
     <React.Fragment>
-      <div className="row d-flex has-border has-margin">
-        <div className="col-2 col-lg-1  d-flex align-items-center justify-content-center bkgd-red">
-          #{props.index + 1}
-        </div>
-        <div className="col-2 col-lg-1  d-flex align-items-center justify-content-center bkgd-red">
-          {props.item.title.english}
-        </div>
+      <div className="row  has-border has-margin">
+        <div className="col-4 col-lg-2 bkgd-red ">{completeTitle}</div>
         <div className="col-8 col-lg-4  has-border-right  bkgd-darkblue">
           {tags}
         </div>

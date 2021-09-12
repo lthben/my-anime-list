@@ -35,8 +35,8 @@ const FeaturedItem = (props) => {
           <p>{characters}</p>
           <p className="funFont">Description: </p>
           <p dangerouslySetInnerHTML={{ __html: desc }}></p>
-          <p className="funFont">Genres: </p>
-          <p>{genres} </p>
+          {/* <p className="funFont">Genres: </p>
+          <p>{genres} </p> */}
           <p className="funFont">Tags: </p>
           <p>{tags}</p>
         </div>
