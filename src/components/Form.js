@@ -19,14 +19,6 @@ const Form = (props) => {
 
   return (
     <React.Fragment>
-      <div className="row funFont">
-        <div
-          className="col-12 d-flex align-items-center justify-content-center"
-          id="main-title-text"
-        >
-          My Anime List
-        </div>
-      </div>
       <div className="row d-flex align-items-center justify-content-center">
         <form
           className="col-12  input-group  d-flex align-items-center justify-content-center"
@@ -50,6 +42,7 @@ const Form = (props) => {
           />
         </form>
       </div>
+      <br />
       <APIquery
         submittedSearch={submittedSearch}
         setSubmittedSearch={setSubmittedSearch}

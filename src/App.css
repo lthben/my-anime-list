@@ -1,7 +1,7 @@
 /* Luffy colour palette: https://www.color-hex.com/color-palette/96968  */
 
 div {
-  /* border: solid 1px lightgrey; */
+  border: solid 1px lightgrey;
 }
 
 body,
@@ -17,6 +17,14 @@ html {
   background-position: center;
   /* background-repeat: repeat; */
   background-size: cover;
+}
+
+#icon-btn {
+  background-image: url("./media/one-piece-icon.png");
+  background-size: cover;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
 }
 
 .has-border {
@@ -42,6 +50,10 @@ html {
   margin: 0.5em auto;
 }
 
+.has-text-shadow {
+  text-shadow: 2px 2px white;
+}
+
 .label-input {
   font-size: large;
 }
@@ -49,6 +61,7 @@ html {
 .short-desc-text {
   color: white;
   font-size: small;
+  font-family: "Roboto", sans-serif;
 }
 
 .no-padding {
