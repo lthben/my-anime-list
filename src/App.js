@@ -27,7 +27,7 @@ const App = () => {
   const [sortYear, setSortYear] = useState(false);
   const [hasSignedIn, setHasSignedIn] = useState(false);
 
-  const auth = getAuth(app);
+  const auth = getAuth();
   const [email, setEmail] = useState("");
 
   onAuthStateChanged(auth, (user) => {
@@ -36,7 +36,7 @@ const App = () => {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       setEmail(user.email);
-      console.log("user email: ", email);
+      console.log("user is signed in: ", email);
       // ...
     } else {
       // User is signed out
@@ -51,24 +51,24 @@ const App = () => {
         <br />
         <div className="row funFont d-flex align-items-center justify-content-center ">
           <div className=".d-md-none .d-lg-block col-xl-4"></div>
-          <div className="col-5 col-xl-4">
+          <div className="col-6 col-xl-4">
             <Link to="/my-anime-list">
               <span id="main-title-text">My Anime List</span>
             </Link>
           </div>
-          <div className="col-4 col-xl-2">
+          <div className="col-3 col-xl-2 d-flex justify-content-around">
             <Link to="/">
               <button
                 type="button"
                 id="discover-btn"
-                className="btn-margin"
+                // className="btn-margin"
               ></button>
             </Link>
             <Link to="/user-actions">
               <button
                 type="button"
                 id="access-btn"
-                className="btn-margin"
+                // className="btn-margin"
               ></button>
             </Link>
           </div>

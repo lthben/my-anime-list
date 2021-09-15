@@ -18,6 +18,8 @@ const SignInForm = (props) => {
         // Signed in
         const user = userCredential.user;
         props.setHasSignedIn(true);
+        setEmail("");
+        setPwd("");
         alert("Signed in successfully");
         // ...
       })

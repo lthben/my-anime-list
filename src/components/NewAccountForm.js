@@ -23,6 +23,8 @@ const NewAccountForm = (props) => {
         // Signed in
         const user = userCredential.user;
         props.setHasSignedIn(true);
+        setEmail("");
+        setPwd("");
         sendEmailVerification(user).then(() => {
           alert("Account created successfully. You are now signed in.");
         });
