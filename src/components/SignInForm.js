@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignInForm = (props) => {
-  const auth = getAuth();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
 
@@ -14,7 +13,7 @@ const SignInForm = (props) => {
     setPwd(e.target.value);
   };
   const handleSubmit = () => {
-    signInWithEmailAndPassword(auth, email, pwd)
+    signInWithEmailAndPassword(props.auth, email, pwd)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;

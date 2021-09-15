@@ -19,8 +19,16 @@ html {
   background-size: cover;
 }
 
-#icon-btn {
-  background-image: url("./media/one-piece-icon.png");
+#discover-btn {
+  background-image: url("./media/treasure-chest.png");
+  background-size: cover;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+}
+
+#access-btn {
+  background-image: url("./media/treasure-key.png");
   background-size: cover;
   background-color: transparent;
   width: 50px;
@@ -46,8 +54,8 @@ html {
 #main-title-text {
   font-size: xx-large;
   color: white;
-  text-shadow: 2px 2px #00b9ff;
   margin: 0.5em auto;
+  text-decoration: underline;
 }
 
 .has-text-shadow {

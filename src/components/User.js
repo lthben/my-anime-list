@@ -2,14 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NewAccountForm from "./NewAccountForm";
 import SignInForm from "./SignInForm";
-import { getAuth, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 const User = (props) => {
-  const auth = getAuth();
-
   const handleSignOut = () => {
-    console.log("signout triggered");
-    signOut(auth)
+    signOut(props.auth)
       .then(() => {
         // Sign-out successful.
         props.setHasSignedIn(false);
@@ -20,23 +17,24 @@ const User = (props) => {
         alert(error.Message);
       });
   };
+
   return (
     <Router>
       <div className="row d-flex align-items-center" style={{ height: "20vh" }}>
         <div className="col-12">
           <Link to="/create-new-account">
-            <button type="submit" className="btn-primary mx-5">
+            <button type="submit" className="btn-primary mx-3">
               Create an account
             </button>
           </Link>
           <Link to="/sign-in">
-            <button type="submit" className="btn-primary mx-5">
+            <button type="submit" className="btn-primary mx-3">
               Sign In
             </button>
           </Link>
           <button
             type="submit"
-            className="btn-primary mx-5"
+            className="btn-primary mx-3"
             onSubmit={handleSignOut}
           >
             Sign Out
@@ -46,12 +44,14 @@ const User = (props) => {
       <Switch>
         <Route path="/create-new-account">
           <NewAccountForm
+            auth={props.auth}
             hasSignedIn={props.hasSignedIn}
             setHasSignedIn={props.setHasSignedIn}
           />
         </Route>
         <Route path="/sign-in">
           <SignInForm
+            auth={props.auth}
             hasSignedIn={props.hasSignedIn}
             setHasSignedIn={props.setHasSignedIn}
           />
