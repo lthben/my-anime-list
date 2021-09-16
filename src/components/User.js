@@ -2,12 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import NewAccountForm from "./NewAccountForm";
 import SignInForm from "./SignInForm";
-import { signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
 const User = (props) => {
-  const handleSignOut = () => {
-    signOut(props.auth)
-      .then(() => {
+  const auth = getAuth();
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    console.log("chicken here");
+    signOut(auth)
+      .then(async () => {
         // Sign-out successful.
         props.setHasSignedIn(false);
         alert("Goodbye!");
@@ -33,9 +37,9 @@ const User = (props) => {
             </button>
           </Link>
           <button
-            type="submit"
+            type="button"
             className="btn-primary mx-3"
-            onSubmit={handleSignOut}
+            onClick={handleSignOut}
           >
             Sign Out
           </button>
@@ -44,14 +48,12 @@ const User = (props) => {
       <Switch>
         <Route path="/create-new-account">
           <NewAccountForm
-            auth={props.auth}
             hasSignedIn={props.hasSignedIn}
             setHasSignedIn={props.setHasSignedIn}
           />
         </Route>
         <Route path="/sign-in">
           <SignInForm
-            auth={props.auth}
             hasSignedIn={props.hasSignedIn}
             setHasSignedIn={props.setHasSignedIn}
           />

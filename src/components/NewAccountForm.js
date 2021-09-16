@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  getAuth,
 } from "firebase/auth";
 
 const NewAccountForm = (props) => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+
+  const auth = getAuth();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,7 +21,7 @@ const NewAccountForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(props.auth, email, pwd)
+    createUserWithEmailAndPassword(auth, email, pwd)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;

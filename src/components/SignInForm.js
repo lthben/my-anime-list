@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignInForm = (props) => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+
+  const auth = getAuth();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -12,9 +14,11 @@ const SignInForm = (props) => {
   const handlePwdChange = (e) => {
     setPwd(e.target.value);
   };
-  const handleSubmit = () => {
-    signInWithEmailAndPassword(props.auth, email, pwd)
-      .then((userCredential) => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, pwd)
+      .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
         props.setHasSignedIn(true);
