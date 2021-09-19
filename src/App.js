@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Form from "./components/Form";
 import AnimeList from "./components/AnimeList";
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import User from "./components/User";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Discover from "./components/Discover";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtlru6Q7YVXRxpe_60rBf2Yi8Yi0oE9oY",
@@ -19,6 +21,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// const admin = require("firebase-admin");
+// let serviceAccount = require("./my-anime-list-gasei31-firebase-adminsdk-btivs-73a8f85301.json");
+// admin.initializeApp({
+// credential: admin.credential.cert(serviceAccount),
+// });
+// const db = admin.firestore();
+const db = getFirestore(app);
 
 const App = () => {
   const [animeItem, setAnimeItem] = useState({});
@@ -30,13 +41,24 @@ const App = () => {
   const auth = getAuth();
   const [email, setEmail] = useState("");
 
+  async function getUsers(db) {
+    const usersCol = collection(db, "users");
+    const userSnapshot = await getDocs(usersCol);
+    const userList = userSnapshot.docs.map((doc) => doc.data());
+    return userList;
+  }
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       setEmail(user.email);
+      setHasSignedIn(true);
       console.log("user is signed in: ", email);
+      console.log("user.uid: ", uid);
+      getUsers(db).then((userList) => console.log(userList));
+
       // ...
     } else {
       // User is signed out

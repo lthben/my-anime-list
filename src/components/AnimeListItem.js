@@ -22,12 +22,12 @@ const AnimeListItem = (props) => {
 
   const tags = props.item.genres.map((ele, ind) => {
     return (
-      <>
+      <React.Fragment>
         <span key={ind} className="badge bg-secondary">
           {ele}
         </span>
         &nbsp;
-      </>
+      </React.Fragment>
     );
   });
 

@@ -9,7 +9,7 @@ const User = (props) => {
 
   const handleSignOut = (e) => {
     e.preventDefault();
-    console.log("chicken here");
+    console.log("handleSignOut in User.js here");
     signOut(auth)
       .then(async () => {
         // Sign-out successful.
