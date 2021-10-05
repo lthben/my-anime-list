@@ -1,4 +1,4 @@
-[Website screenshot]("./src/media/mal_screenshot.png")
+![Website screenshot](./src/media/mal_screenshot.png)
 
 # MyAnimeList
 
