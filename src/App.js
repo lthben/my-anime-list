@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Form from "./components/Form";
 import AnimeList from "./components/AnimeList";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import User from "./components/User";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Discover from "./components/Discover";
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+// import * as admin from "firebase-admin";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtlru6Q7YVXRxpe_60rBf2Yi8Yi0oE9oY",
@@ -22,14 +23,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-// const admin = require("firebase-admin");
-// let serviceAccount = require("./my-anime-list-gasei31-firebase-adminsdk-btivs-73a8f85301.json");
-// admin.initializeApp({
-// credential: admin.credential.cert(serviceAccount),
-// });
-// const db = admin.firestore();
 const db = getFirestore(app);
+// const admin = require("firebase-admin");
 
 const App = () => {
   const [animeItem, setAnimeItem] = useState({});
@@ -57,7 +52,7 @@ const App = () => {
       setHasSignedIn(true);
       console.log("user is signed in: ", email);
       console.log("user.uid: ", uid);
-      getUsers(db).then((userList) => console.log(userList));
+      getUsers(db).then((userList) => console.log("userList: ", userList));
 
       // ...
     } else {
@@ -128,11 +123,7 @@ const App = () => {
             <Discover />
           </Route>
           <Route path="/user-actions">
-            <User
-              hasSignedIn={hasSignedIn}
-              setHasSignedIn={setHasSignedIn}
-              auth={auth}
-            />
+            <User hasSignedIn={hasSignedIn} setHasSignedIn={setHasSignedIn} />
           </Route>
         </Switch>
       </div>

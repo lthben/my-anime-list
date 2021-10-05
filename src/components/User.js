@@ -32,7 +32,11 @@ const User = (props) => {
             </button>
           </Link>
           <Link to="/sign-in">
-            <button type="submit" className="btn-primary mx-3">
+            <button
+              type="submit"
+              className="btn-primary mx-3"
+              disabled={props.hasSignedIn}
+            >
               Sign In
             </button>
           </Link>

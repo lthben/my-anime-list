@@ -1,3 +1,5 @@
+[Website screenshot]("./src/media/mal_screenshot.png")
+
 # MyAnimeList
 
 Create your own recorded list of favourite anime!
