@@ -19,20 +19,63 @@ html {
   background-size: cover;
 }
 
-#discover-btn {
-  background-image: url("./media/treasure-chest.png");
+.nav-btn {
   background-size: cover;
   background-color: transparent;
   width: 50px;
   height: 50px;
+  border-style: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-btn:hover {
+  box-shadow: 0 0 35px rgba(255, 255, 255, 1);
+}
+
+#discover-btn {
+  background-image: url("./media/treasure-chest.png");
 }
 
 #access-btn {
   background-image: url("./media/treasure-key.png");
-  background-size: cover;
-  background-color: transparent;
-  width: 50px;
-  height: 50px;
+}
+
+/*===================*/
+/* PULSE GROW
+/*===================*/
+
+@-webkit-keyframes pulse-grow-on-hover {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes pulse-grow-on-hover {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+.pulse-grow-on-hover {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.pulse-grow-on-hover:hover,
+.pulse-grow-on-hover:focus,
+.pulse-grow-on-hover:active {
+  -webkit-animation-name: pulse-grow-on-hover;
+  animation-name: pulse-grow-on-hover;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
 .has-border {
@@ -55,7 +98,13 @@ html {
   font-size: xx-large;
   color: white;
   margin: 0.5em auto;
-  text-decoration: underline;
+  transition: all 0.2s ease-in-out;
+  padding: 5px;
+}
+
+#main-title-text:hover {
+  background-color: transparent;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 1);
 }
 
 .has-text-shadow {

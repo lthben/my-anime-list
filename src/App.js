@@ -69,7 +69,7 @@ const App = () => {
         <div className="row funFont d-flex align-items-center justify-content-center ">
           <div className=".d-md-none .d-lg-block col-xl-4"></div>
           <div className="col-6 col-xl-4">
-            <Link to="/my-anime-list">
+            <Link to="/my-anime-list" className="text-decoration-none">
               <span id="main-title-text">My Anime List</span>
             </Link>
           </div>
@@ -78,14 +78,14 @@ const App = () => {
               <button
                 type="button"
                 id="discover-btn"
-                // className="btn-margin"
+                className="nav-btn pulse-grow-on-hover"
               ></button>
             </Link>
             <Link to="/user-actions">
               <button
                 type="button"
                 id="access-btn"
-                // className="btn-margin"
+                className="nav-btn pulse-grow-on-hover"
               ></button>
             </Link>
           </div>

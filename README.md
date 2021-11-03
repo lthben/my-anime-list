@@ -15,4 +15,14 @@ Steps:
 - Optionally, you can enter your own personal score rating for each anime and record which year you watched it. The list can then be sorted by your rating or year watched.
 - Toggle the details button for more information on that anime.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and uses the popular [AniList anime API](https://anilist.gitbook.io/anilist-apiv2-docs/).
+
+# TODO:
+
+- Popular and Trending
+- Add custom anime title not in API
+- Use modal for FeaturedItem
+- Improve UI for user rating (e.g. stars) and year inputs (drop down menu)
+- Firebase: store data [YouTube Firebase playlist](https://www.youtube.com/watch?v=2ciHixbc4HE&list=PL0vfts4VzfNj28Xp5kmNAdIqABNGhTzKF&ab_channel=Fireship)
+  - Secure your data
+  - Add Firebase to server?
