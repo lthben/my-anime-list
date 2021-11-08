@@ -13,6 +13,7 @@ import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 import logo from "./media/smiling-luffy-face.png";
 import NewAccountForm from "./pages/NewAccountForm";
 import SignInForm from "./pages/SignInForm";
+import NavBar from "./components/NavBar";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtlru6Q7YVXRxpe_60rBf2Yi8Yi0oE9oY",
@@ -28,7 +29,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 // const admin = require("firebase-admin");
-
+const props = {};
 const App = () => {
   const [animeItem, setAnimeItem] = useState({});
   const [animeList, setAnimeList] = useState([]); //array of animeItem objects
@@ -70,55 +71,14 @@ const App = () => {
   return (
     <Router>
       <div className="container bg">
-        <div
-          className="row funFont d-flex align-items-center justify-content-around mt-3"
-          style={{ height: "55px" }}
-        >
-          <div className="col-lg-4">
-            <img src={logo} alt="logo" />
-            <span id="main-title-text">My Anime List</span>
-          </div>
-          <div className="col-lg-4">
-            <Link to="/" className="text-decoration-none">
-              <button
-                type="button"
-                id="discover-btn"
-                className="nav-btn "
-              ></button>
-            </Link>
-            <Link to="/" className="mx-5">
-              <button
-                type="button"
-                id="search-btn"
-                className="nav-btn"
-              ></button>
-            </Link>
-            <Link to="/my-anime-list">
-              <button
-                type="button"
-                id="my-anime-list-btn"
-                className="nav-btn "
-              ></button>
-            </Link>
-            {/* <Link to="/user-actions">
-              <button
-                type="button"
-                id="access-btn"
-                className="nav-btn pulse-grow-on-hover"
-              ></button>
-            </Link> */}
-          </div>
-          <div className="col-lg-4">
-            <UserButtons
-              hasSignedIn={hasSignedIn}
-              setHasSignedIn={setHasSignedIn}
-              email={email}
-              setEmail={setEmail}
-              password={password}
-              setPassword={setPassword}
-            />
-          </div>
-        </div>
+        <NavBar
+          hasSignedIn={hasSignedIn}
+          setHasSignedIn={setHasSignedIn}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+        />
         <div className="row">
           <Switch>
             <Route exact path="/">

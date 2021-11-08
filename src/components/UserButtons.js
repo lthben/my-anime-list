@@ -8,40 +8,40 @@ const UserButtons = (props) => {
   //props: hasSignedIn, setHasSignedIn, email, setEmail, password, setPassword
   const auth = getAuth();
 
-  const signedInJSX = (
-    <div>
+  const signedOutJSX = (
+    <React.Fragment>
       <Link to="/create-new-account">
-        <button type="submit" className="btn-primary mx-3">
-          Create an account
+        <button type="submit" className=" user-btn">
+          Register
         </button>
       </Link>
       <Link to="/sign-in">
         <button
           type="submit"
-          className="btn-primary mx-3"
+          className="user-btn user-btn-right"
           disabled={props.hasSignedIn}
         >
           Sign In
         </button>
       </Link>
-    </div>
+    </React.Fragment>
   );
 
   console.log("props.hasSignedIn: ", props.hasSignedIn);
 
-  const signedOutJSX = (
-    <div>
-      <div className="short-desc-text">
+  const signedInJSX = (
+    <React.Fragment>
+      <span className="short-desc-text user-btn">
         {props.hasSignedIn ? "Welcome " + props.email : null}
-      </div>
+      </span>
       <button
         type="button"
-        className="btn-primary mx-3"
+        className="user-btn user-btn-right"
         onClick={handleSignOut}
       >
         Sign Out
       </button>
-    </div>
+    </React.Fragment>
   );
 
   const handleSignOut = (e) => {
@@ -60,8 +60,8 @@ const UserButtons = (props) => {
   };
 
   return (
-    <div>
-      {props.hasSignedIn ? signedOutJSX : signedInJSX}
+    <React.Fragment>
+      {props.hasSignedIn ? signedInJSX : signedOutJSX}
       {/* <Router> */}
       {/* <div
           className="row d-flex align-items-center"
@@ -88,7 +88,7 @@ const UserButtons = (props) => {
           </Route>
         </Switch>
       </Router> */}
-    </div>
+    </React.Fragment>
   );
 };
 

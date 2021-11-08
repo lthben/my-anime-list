@@ -1,7 +1,7 @@
 /* Luffy colour palette: https://www.color-hex.com/color-palette/96968  */
 
 div {
-  border: solid 1px lightgrey;
+  /* border: solid 1px lightgrey; */
 }
 
 body,
@@ -19,18 +19,30 @@ html {
   background-size: cover;
 }
 
+/*****************************************************
+*                       Navbar
+*****************************************************/
+.navbar-toggler {
+  position: absolute;
+  right: 0.2em;
+  top: 1.5em;
+}
+
 .nav-btn {
   background-size: cover;
   background-color: transparent;
   width: 50px;
   height: 50px;
   border-style: none;
-  transition: all 0.2s ease-in-out;
-  /* margin: 0 10%; */
 }
 
-.nav-btn:hover {
-  box-shadow: 0 0 35px rgba(255, 255, 255, 1);
+.user-btn {
+  border: none;
+  background-color: #ffb300;
+}
+.nav-btn:hover,
+.user-btn:hover {
+  box-shadow: inset 0 0 35px rgba(255, 255, 255, 0.5);
 }
 
 #discover-btn {
@@ -44,10 +56,96 @@ html {
 #my-anime-list-btn {
   background-image: url("./media/treasure-chest.png");
 }
+@media only screen and (max-width: 576px) {
+  .nav-btn,
+  .user-btn {
+    margin: 0 0.2em 0 0;
+  }
+  .nav-btn-right {
+    margin: 0 0.5em 0 0;
+  }
+  .user-btn-right {
+    margin: 0 0.1em 0 0;
+  }
+}
 
-/* #access-btn {
-  background-image: url("./media/treasure-key.png");
-} */
+@media only screen and (min-width: 576px) {
+  .nav-btn,
+  .user-btn {
+    margin: 0 1em 0 0;
+  }
+  .nav-btn-right {
+    margin: 0 2em 0 0;
+  }
+  .user-btn-right {
+    margin: 0 0.25em 0 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #collapsible-elements {
+    display: block;
+    justify-content: space-evenly;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #collapsible-elements {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .nav-btn,
+  .user-btn {
+    margin: 0 1.2em 0 0;
+  }
+  .nav-btn-right {
+    margin: 0 2.5em 0 0;
+  }
+  .user-btn-right {
+    margin: 0 0.4em 0 0;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .nav-btn,
+  .user-btn {
+    margin: 0 3em 0 0;
+  }
+  .nav-btn-right {
+    margin: 0 5em 0 0;
+  }
+  .user-btn-right {
+    margin: 0 0.5em 0 0;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .nav-btn,
+  .user-btn {
+    margin: 0 4em 0 0;
+  }
+  .nav-btn-right {
+    margin: 0 8em 0 0;
+  }
+  .user-btn-right {
+    margin: 0 0.8em 0 0;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .nav-btn,
+  .user-btn {
+    margin: 0 6em 0 0;
+  }
+  .nav-btn-right {
+    margin: 0 12em 0 0;
+  }
+  .user-btn-right {
+    margin: 0 1em 0 0;
+  }
+}
+
+/****************** end of NavBar *****************/
 
 .has-border {
   border: solid 1px white;
@@ -68,13 +166,13 @@ html {
 #main-title-text {
   font-size: xx-large;
   color: white;
-  margin-left: 5%;
+  margin-left: 0.5em;
+  margin-right: 1em;
   /* box-shadow: inset 0 0 35px black; */
   /* padding: 5px; */
   text-shadow: 2px 2px 5px black;
   vertical-align: middle;
 }
-
 /* #main-title-text:hover {
   background-color: transparent;
   box-shadow: 0 0 35px rgba(255, 255, 255, 1);
