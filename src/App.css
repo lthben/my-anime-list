@@ -1,5 +1,3 @@
-/* Luffy colour palette: https://www.color-hex.com/color-palette/96968  */
-
 div {
   /* border: solid 1px lightgrey; */
 }
@@ -38,7 +36,8 @@ body {
 
 .user-btn {
   border: none;
-  background-color: #ffb300;
+  /* background-color: #ffb300; */
+  background-color: #00b9ff;
 }
 .nav-btn:hover,
 .user-btn:hover {
@@ -147,8 +146,9 @@ body {
 
 .welcome-text {
   background-color: rgba(255, 255, 255, 0.5);
-  /* font-size: small; */
-  /* font-family: "Roboto", sans-serif; */
+  font-size: small;
+  font-family: "Roboto", sans-serif;
+  padding: 0.3em;
 }
 
 /*****************************************************
@@ -159,7 +159,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 5% 10%;
   margin: 0 auto;
-  margin-top: 10em;
+  margin-top: 12em;
   text-align: left;
   width: 80%;
 }

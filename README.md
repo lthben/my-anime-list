@@ -17,17 +17,36 @@ Steps:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and uses the popular [AniList anime API](https://anilist.gitbook.io/anilist-apiv2-docs/).
 
+# Color Palette:
+
+[Luffy colour palette](https://www.color-hex.com/color-palette/96968)
+
+# Components:
+
+App
+
+- NavBar
+  - UserButtons
+- SignInForm
+- NewAccountForm
+- Discover
+- Search
+  - APIQuery
+- MyAnimeList
+  - AnimeListItem
+  - FeaturedItem
+  - SortButtons
+
 # TODO:
 
-- Popular, Trending, Rating
-- useContext
-- Add custom anime title not in API
+- Search
 - Use modal for FeaturedItem
+- Popular, Trending, Rating
+- Add custom anime title not in API
 - user medialist:
-  status: current, planning, completed, dropped, paused
-  score
-  notes
-- Improve UI for user rating (e.g. stars) and year inputs (drop down menu)
+  - status: current, planning, completed, dropped, paused
+  - score (5 stars)
+  - notes
 - Firebase: store data [YouTube Firebase playlist](https://www.youtube.com/watch?v=2ciHixbc4HE&list=PL0vfts4VzfNj28Xp5kmNAdIqABNGhTzKF&ab_channel=Fireship)
   - Secure your data
   - Add Firebase to server?

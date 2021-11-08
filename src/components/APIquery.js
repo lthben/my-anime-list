@@ -1,6 +1,21 @@
 import React, { useEffect } from "react";
 
 const APIquery = (props) => {
+  //props: submittedSearch, setSubmittedSearch, variables
+
+  useEffect(() => {
+    if (props.submittedSearch.length > 0) {
+      console.log("variables: ", props.variables);
+      fetch(url, options)
+        .then(handleResponse)
+        .then(handleData)
+        .catch(handleError);
+    }
+    return () => {
+      props.setSubmittedSearch("");
+    };
+  }, [props.variables]);
+
   const handleResponse = (response) => {
     return response.json().then(function (json) {
       return response.ok ? json : Promise.reject(json);
@@ -8,21 +23,21 @@ const APIquery = (props) => {
   };
 
   const handleData = (data) => {
-    console.log("in APIquery: ", data.data.Page);
-    let myObj = data.data.Page.media;
+    console.log("in APIquery: ", data.data);
+    // let myObj = data.data.Page.media;
     // myObj.userRating = "";
     // myObj.yearWatched = "";
-    props.setAnimeItem(myObj);
+    // props.setAnimeItem(myObj);
   };
 
   const handleError = (error) => {
-    alert("Anime title not found");
-    //   console.error(error.errors[0].status);
+    // alert("Anime title not found");
+    console.error(error.errors[0].status);
     console.error(error);
   };
 
   let query = `
-    query ($page: Int, $perPage: Int, $search: String) {
+    query ($page: Int, $perPage: Int, $search: String, $sortby: [MediaSort]) {
       Page(page: $page, perPage: $perPage) {
         pageInfo {
           total
@@ -31,7 +46,7 @@ const APIquery = (props) => {
           hasNextPage
           perPage
         }
-        media(search: $search, type: ANIME) {
+        media(search: $search, type: ANIME, sort: $sortby) {
           id
           title {
             romaji
@@ -78,11 +93,12 @@ const APIquery = (props) => {
   `;
 
   // Define our query variables and values that will be used in the query request
-  let variables = {
-    page: 1,
-    perPage: 1,
-    search: props.submittedSearch,
-  };
+  // let variables = {
+  //   page: 1,
+  //   perPage: 10,
+  //   search: props.submittedSearch,
+  //   sortby: "POPULARITY_DESC",
+  // };
 
   // Define the config we'll need for our Api request
   let url = "https://graphql.anilist.co",
@@ -94,22 +110,9 @@ const APIquery = (props) => {
       },
       body: JSON.stringify({
         query: query,
-        variables: variables,
+        variables: props.variables,
       }),
     };
-
-  useEffect(() => {
-    if (props.submittedSearch.length > 0) {
-      console.log("fetching based on submittedSearch: ", props.submittedSearch);
-      fetch(url, options)
-        .then(handleResponse)
-        .then(handleData)
-        .catch(handleError);
-    }
-    return () => {
-      props.setSubmittedSearch("");
-    };
-  }, [props.submittedSearch]);
 
   return <div></div>;
 };

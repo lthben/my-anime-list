@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AnimeListItem from "./AnimeListItem";
+import AnimeListItem from "../components/AnimeListItem";
 
-const AnimeList = (props) => {
+const MyAnimeList = (props) => {
   const [removeIndex, setRemoveIndex] = useState(0);
   const [remove, setRemove] = useState(false);
   const [editInfo, setEditInfo] = useState({ id: "", field: "", val: "" });
@@ -104,4 +104,4 @@ const AnimeList = (props) => {
   );
 };
 
-export default AnimeList;
+export default MyAnimeList;

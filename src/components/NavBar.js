@@ -29,14 +29,14 @@ const NavBar = (props) => {
           id="navbarSupportedContent"
         >
           <div className="d-flex align-items-center" id="collapsible-elements">
-            <Link to="/">
+            <Link to="/discover">
               <button
                 type="button"
                 id="discover-btn"
                 className="nav-btn "
               ></button>
             </Link>
-            <Link to="/">
+            <Link to="/search">
               <button
                 type="button"
                 id="search-btn"
@@ -50,13 +50,6 @@ const NavBar = (props) => {
                 className="nav-btn nav-btn-right"
               ></button>
             </Link>
-            {/* <Link to="/user-actions">
-              <button
-                type="button"
-                id="access-btn"
-                className="nav-btn pulse-grow-on-hover"
-              ></button>
-            </Link> */}
             <UserButtons
               hasSignedIn={props.hasSignedIn}
               setHasSignedIn={props.setHasSignedIn}

@@ -1,10 +1,8 @@
 import "./App.css";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Form from "./components/Form";
-import AnimeList from "./components/AnimeList";
+import AnimeList from "./pages/MyAnimeList";
 import UserButtons from "./components/UserButtons";
-import Discover from "./components/Discover";
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -13,6 +11,9 @@ import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 import NewAccountForm from "./pages/NewAccountForm";
 import SignInForm from "./pages/SignInForm";
 import NavBar from "./components/NavBar";
+import Search from "./pages/Search";
+import Discover from "./pages/Discover";
+import MyAnimeList from "./pages/MyAnimeList";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtlru6Q7YVXRxpe_60rBf2Yi8Yi0oE9oY",
@@ -39,6 +40,10 @@ const App = () => {
   const auth = getAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [search, setSearch] = useState("");
+  const [submittedSearch, setSubmittedSearch] = useState("");
+  const [variables, setVariables] = useState({});
 
   async function getUsers(db) {
     const usersCol = collection(db, "users");
@@ -78,11 +83,8 @@ const App = () => {
           password={password}
           setPassword={setPassword}
         />
-        <div className="row">
+        <div>
           <Switch>
-            <Route exact path="/">
-              <Discover />
-            </Route>
             <Route path="/create-new-account">
               <NewAccountForm
                 hasSignedIn={hasSignedIn}
@@ -99,20 +101,31 @@ const App = () => {
                 setPassword={setPassword}
               />
             </Route>
+            <Route exact path="/discover">
+              <Discover />
+            </Route>
+            <Route path="/search">
+              {/* <Form
+                setAnimeItem={setAnimeItem}
+                animeList={animeList}
+                setAnimeList={setAnimeList}
+                sortRatings={sortRatings}
+                setSortRatings={setSortRatings}
+                sortYear={sortYear}
+                setSortYear={setSortYear}
+              /> */}
+              <Search
+                search={search}
+                setSearch={setSearch}
+                submittedSearch={submittedSearch}
+                setSubmittedSearch={setSubmittedSearch}
+                variables={variables}
+                setVariables={setVariables}
+              />
+            </Route>
             <Route path="/my-anime-list">
               {hasSignedIn && (
-                <Form
-                  setAnimeItem={setAnimeItem}
-                  animeList={animeList}
-                  setAnimeList={setAnimeList}
-                  sortRatings={sortRatings}
-                  setSortRatings={setSortRatings}
-                  sortYear={sortYear}
-                  setSortYear={setSortYear}
-                />
-              )}
-              {hasSignedIn && (
-                <AnimeList
+                <MyAnimeList
                   animeItem={animeItem}
                   setAnimeItem={setAnimeItem}
                   animeList={animeList}
@@ -122,9 +135,6 @@ const App = () => {
                 />
               )}
             </Route>
-            {/* <Route path="/user-actions">
-            <User hasSignedIn={hasSignedIn} setHasSignedIn={setHasSignedIn} />
-          </Route> */}
           </Switch>
         </div>
       </div>

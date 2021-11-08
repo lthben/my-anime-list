@@ -60,32 +60,6 @@ const UserButtons = (props) => {
   return (
     <React.Fragment>
       {props.hasSignedIn ? signedInJSX : signedOutJSX}
-      {/* <Router> */}
-      {/* <div
-          className="row d-flex align-items-center"
-          style={{ height: "20vh" }}
-        >
-          <div className="col"></div>
-        </div> */}
-      {/* <Switch>
-          <Route path="/create-new-account">
-            <NewAccountForm
-              hasSignedIn={props.hasSignedIn}
-              setHasSignedIn={props.setHasSignedIn}
-            />
-          </Route>
-          <Route path="/sign-in">
-            <SignInForm
-              hasSignedIn={props.hasSignedIn}
-              setHasSignedIn={props.setHasSignedIn}
-              email={props.email}
-              setEmail={props.setEmail}
-              password={props.password}
-              setPassword={props.setPassword}
-            />
-          </Route>
-        </Switch>
-      </Router> */}
     </React.Fragment>
   );
 };
