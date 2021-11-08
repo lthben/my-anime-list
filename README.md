@@ -19,9 +19,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # TODO:
 
-- Popular and Trending
+- Popular, Trending, Rating
+- useContext
 - Add custom anime title not in API
 - Use modal for FeaturedItem
+- user medialist:
+  status: current, planning, completed, dropped, paused
+  score
+  notes
 - Improve UI for user rating (e.g. stars) and year inputs (drop down menu)
 - Firebase: store data [YouTube Firebase playlist](https://www.youtube.com/watch?v=2ciHixbc4HE&list=PL0vfts4VzfNj28Xp5kmNAdIqABNGhTzKF&ab_channel=Fireship)
   - Secure your data

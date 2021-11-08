@@ -2,30 +2,28 @@ import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignInForm = (props) => {
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+  //props: hasSignedIn, setHasSignedIn, email, setEmail, password, setPassword
 
   const auth = getAuth();
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    props.setEmail(e.target.value);
   };
 
   const handlePwdChange = (e) => {
-    setPwd(e.target.value);
+    props.setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, pwd)
+    signInWithEmailAndPassword(auth, props.email, props.password)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
         props.setHasSignedIn(true);
-        setEmail("");
-        setPwd("");
+        props.setEmail("");
+        props.setPassword("");
         alert("Signed in successfully");
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -48,7 +46,7 @@ const SignInForm = (props) => {
             className="form-control"
             id="inputEmail"
             onChange={handleEmailChange}
-            value={email}
+            value={props.email}
             placeholder="existing user email"
           ></input>
         </div>
@@ -66,7 +64,7 @@ const SignInForm = (props) => {
             className="form-control"
             id="inputPassword"
             onChange={handlePwdChange}
-            value={pwd}
+            value={props.password}
             placeholder="existing user password"
           ></input>
         </div>

@@ -8,10 +8,10 @@ const APIquery = (props) => {
   };
 
   const handleData = (data) => {
-    console.log("in APIquery: ", data.data.Media);
-    let myObj = data.data.Media;
-    myObj.userRating = "";
-    myObj.yearWatched = "";
+    console.log("in APIquery: ", data.data.Page);
+    let myObj = data.data.Page.media;
+    // myObj.userRating = "";
+    // myObj.yearWatched = "";
     props.setAnimeItem(myObj);
   };
 
@@ -22,46 +22,65 @@ const APIquery = (props) => {
   };
 
   let query = `
-        query ($search: String) {
-            Media (search: $search, type: ANIME, format: TV) { 
-                id
-                title {
-                romaji
-                english
-                }
-                format
-                bannerImage
-                coverImage {
-                  large
-                  medium
-                }
-                description
-                characters (sort: ROLE, role: MAIN) {
-                nodes {
-                    name {
-                    full
-                    }
-                }
-                edges {
-                    role
-                }
-                }
-                genres
-                tags {
-                    name
-                    description 
-                }
-                seasonYear
-                episodes
-                countryOfOrigin
-                status
-                meanScore
-            }
+    query ($page: Int, $perPage: Int, $search: String) {
+      Page(page: $page, perPage: $perPage) {
+        pageInfo {
+          total
+          currentPage
+          lastPage
+          hasNextPage
+          perPage
         }
-    `;
+        media(search: $search, type: ANIME) {
+          id
+          title {
+            romaji
+            english
+          }
+          format
+          bannerImage
+          coverImage {
+            large
+            medium
+          }
+          description
+          characters(sort: ROLE, role: MAIN) {
+            nodes {
+              name {
+                full
+              }
+            }
+            edges {
+              role
+            }
+          }
+          genres
+          tags {
+            name
+            description
+          }
+          seasonYear
+          episodes
+          countryOfOrigin
+          status
+          meanScore
+          averageScore
+          popularity
+          trending
+          studios(isMain: true) {
+            nodes {
+              name
+            }
+          }
+        }
+      }      
+    }
+  `;
 
   // Define our query variables and values that will be used in the query request
   let variables = {
+    page: 1,
+    perPage: 1,
     search: props.submittedSearch,
   };
 
