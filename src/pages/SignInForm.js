@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useHistory } from "react-router";
 
 const SignInForm = (props) => {
   //props: hasSignedIn, setHasSignedIn, email, setEmail, password, setPassword
+
+  const history = useHistory();
 
   const auth = getAuth();
 
@@ -23,7 +26,8 @@ const SignInForm = (props) => {
         props.setHasSignedIn(true);
         props.setEmail("");
         props.setPassword("");
-        alert("Signed in successfully");
+        // alert("Signed in successfully");
+        history.push("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -32,44 +36,32 @@ const SignInForm = (props) => {
       });
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="row mb-3 d-flex justify-content-center">
-        <label
-          htmlFor="exampleInputEmail"
-          className="form-label has-text-shadow col-md-2"
-        >
+    <form onSubmit={handleSubmit} className="my-form">
+      <div className="mb-3">
+        <label htmlFor="inputEmail" className="form-label funFont">
           Email Address
         </label>
-        <div className="col-md-4">
-          <input
-            type="email"
-            className="form-control"
-            id="inputEmail"
-            onChange={handleEmailChange}
-            value={props.email}
-            placeholder="existing user email"
-          ></input>
-        </div>
+        <input
+          type="email"
+          className="form-control funFont"
+          id="inputEmail"
+          onChange={handleEmailChange}
+          value={props.email}
+        ></input>
       </div>
-      <div className="row mb-3 d-flex justify-content-center">
-        <label
-          htmlFor="exampleInputPassword1"
-          className="form-label has-text-shadow col-md-2"
-        >
+      <div className="mb-5">
+        <label htmlFor="inputPassword1" className="form-label funFont">
           Password
         </label>
-        <div className="col-md-4">
-          <input
-            type="password"
-            className="form-control"
-            id="inputPassword"
-            onChange={handlePwdChange}
-            value={props.password}
-            placeholder="existing user password"
-          ></input>
-        </div>
+        <input
+          type="password"
+          className="form-control funFont"
+          id="inputPassword"
+          onChange={handlePwdChange}
+          value={props.password}
+        ></input>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="user-btn funFont">
         Submit
       </button>
     </form>

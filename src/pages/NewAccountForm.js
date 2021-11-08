@@ -6,28 +6,37 @@ import {
 } from "firebase/auth";
 
 const NewAccountForm = (props) => {
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [userData, setUserData] = useState({
+    username: "",
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
 
   const auth = getAuth();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  const handleInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-  const handlePwdChange = (e) => {
-    setPwd(e.target.value);
+    setUserData({ ...userData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, pwd)
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         props.setHasSignedIn(true);
-        setEmail("");
-        setPwd("");
+        setUserData({
+          username: "",
+          firstname: "",
+          lastname: "",
+          email: "",
+          password: "",
+        });
         sendEmailVerification(user).then(() => {
           alert("Account created successfully. You are now signed in.");
         });
@@ -42,44 +51,74 @@ const NewAccountForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="row mb-3 d-flex justify-content-center">
-        <label
-          htmlFor="exampleInputEmail"
-          className="form-label has-text-shadow col-md-2"
-        >
+    <form onSubmit={handleSubmit} className="my-form">
+      <div className="mb-3">
+        <label htmlFor="inputUserName" className="form-label funFont">
+          User name
+        </label>
+        <input
+          type="text"
+          className="form-control funFont"
+          id="inputUserName"
+          name="username"
+          onChange={handleInputChange}
+          value={userData.username}
+          placeholder="Has to be unique"
+        ></input>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="inputFirstName" className="form-label funFont">
+          First name
+        </label>
+        <input
+          type="text"
+          className="form-control funFont"
+          id="inputFirstName"
+          name="firstname"
+          onChange={handleInputChange}
+          value={userData.firstname}
+        ></input>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="inputLastName" className="form-label funFont">
+          Last name
+        </label>
+        <input
+          type="text"
+          className="form-control funFont"
+          id="inputLastName"
+          name="lastname"
+          onChange={handleInputChange}
+          value={userData.lastname}
+        ></input>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="inputEmail" className="form-label funFont">
           Email Address
         </label>
-        <div className="col-md-4">
-          <input
-            type="email"
-            className="form-control"
-            id="inputEmail"
-            onChange={handleEmailChange}
-            value={email}
-            placeholder="new account email"
-          ></input>
-        </div>
+        <input
+          type="email"
+          className="form-control funFont"
+          id="inputEmail"
+          name="email"
+          onChange={handleInputChange}
+          value={userData.email}
+        ></input>
       </div>
-      <div className="row mb-3 d-flex justify-content-center">
-        <label
-          htmlFor="exampleInputPassword1"
-          className="form-label has-text-shadow col-md-2"
-        >
+      <div className="mb-5">
+        <label htmlFor="inputPassword1" className="form-label funFont">
           Password
         </label>
-        <div className="col-md-4">
-          <input
-            type="password"
-            className="form-control"
-            id="inputPassword"
-            onChange={handlePwdChange}
-            value={pwd}
-            placeholder="new account password"
-          ></input>
-        </div>
+        <input
+          type="password"
+          className="form-control funFont"
+          id="inputPassword"
+          name="password"
+          onChange={handleInputChange}
+          value={userData.password}
+        ></input>
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="user-btn funFont">
         Submit
       </button>
     </form>

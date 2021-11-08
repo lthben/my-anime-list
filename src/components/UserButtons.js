@@ -8,6 +8,19 @@ const UserButtons = (props) => {
   //props: hasSignedIn, setHasSignedIn, email, setEmail, password, setPassword
   const auth = getAuth();
 
+  const handleSignOut = (e) => {
+    console.log("handleSignOut in User.js here");
+    signOut(auth)
+      .then(async () => {
+        // Sign-out successful.
+        props.setHasSignedIn(false);
+      })
+      .catch((error) => {
+        // An error happened.
+        alert(error.Message);
+      });
+  };
+
   const signedOutJSX = (
     <React.Fragment>
       <Link to="/create-new-account">
@@ -31,8 +44,8 @@ const UserButtons = (props) => {
 
   const signedInJSX = (
     <React.Fragment>
-      <span className="short-desc-text user-btn">
-        {props.hasSignedIn ? "Welcome " + props.email : null}
+      <span className="user-btn welcome-text ">
+        {props.hasSignedIn ? "Welcome! " + props.email : null}
       </span>
       <button
         type="button"
@@ -43,21 +56,6 @@ const UserButtons = (props) => {
       </button>
     </React.Fragment>
   );
-
-  const handleSignOut = (e) => {
-    e.preventDefault();
-    console.log("handleSignOut in User.js here");
-    signOut(auth)
-      .then(async () => {
-        // Sign-out successful.
-        props.setHasSignedIn(false);
-        alert("Goodbye!");
-      })
-      .catch((error) => {
-        // An error happened.
-        alert(error.Message);
-      });
-  };
 
   return (
     <React.Fragment>

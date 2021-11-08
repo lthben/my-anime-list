@@ -7,8 +7,8 @@ const NavBar = (props) => {
   //props: hasSignedIn, setHasSignedIn, email, setEmail, password, setPassword
 
   return (
-    <nav className=" navbar navbar-expand-md navbar-dark ">
-      <div className=" funFont align-items-center justify-content-start pt-3 container ">
+    <nav className=" navbar navbar-expand-md navbar-dark fixed-top">
+      <div className="funFont align-items-center justify-content-start pt-3 container ">
         <div className="navbar-brand d-flex justify-content-end">
           <img src={logo} alt="logo" />
           <span id="main-title-text">My Anime List</span>
@@ -24,8 +24,11 @@ const NavBar = (props) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse " id="navbarSupportedContent">
-          <div className="d-flex align-items-center " id="collapsible-elements">
+        <div
+          className="collapse navbar-collapse mt-3 "
+          id="navbarSupportedContent"
+        >
+          <div className="d-flex align-items-center" id="collapsible-elements">
             <Link to="/">
               <button
                 type="button"

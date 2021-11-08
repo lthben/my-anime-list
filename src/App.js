@@ -10,7 +10,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 // import * as admin from "firebase-admin";
-import logo from "./media/smiling-luffy-face.png";
 import NewAccountForm from "./pages/NewAccountForm";
 import SignInForm from "./pages/SignInForm";
 import NavBar from "./components/NavBar";
@@ -70,7 +69,7 @@ const App = () => {
 
   return (
     <Router>
-      <div className="container bg">
+      <div className="container">
         <NavBar
           hasSignedIn={hasSignedIn}
           setHasSignedIn={setHasSignedIn}
