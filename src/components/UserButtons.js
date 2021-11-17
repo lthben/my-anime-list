@@ -14,6 +14,7 @@ const UserButtons = (props) => {
       .then(async () => {
         // Sign-out successful.
         props.setHasSignedIn(false);
+        sessionStorage.setItem("hasSignedIn", "false");
       })
       .catch((error) => {
         // An error happened.
@@ -45,7 +46,7 @@ const UserButtons = (props) => {
   const signedInJSX = (
     <React.Fragment>
       <span className="user-btn welcome-text ">
-        {props.hasSignedIn ? "Welcome! " + props.email : null}
+        {props.hasSignedIn ? "Welcome " + props.email : null}
       </span>
       <button
         type="button"

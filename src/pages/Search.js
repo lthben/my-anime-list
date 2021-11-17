@@ -26,22 +26,21 @@ const Search = (props) => {
 
   return (
     <React.Fragment>
-      <form className="my-form" onSubmit={handleSubmit}>
+      <form className="my-form" id="search-form" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="inputAnimeTitle" className="form-label funFont">
-            Enter an anime title
-          </label>
           <input
             type="text"
             className="form-control funFont"
             id="inputAnimeTitle"
             onChange={handleSearchChange}
             value={props.search}
+            placeholder="Enter an anime title"
+            autoFocus
           ></input>
         </div>
-        <button type="submit" className="user-btn funFont">
+        {/* <button type="submit" className="user-btn funFont">
           Submit
-        </button>
+        </button> */}
 
         {/* <SortButtons
             animeList={props.animeList}

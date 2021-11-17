@@ -19,10 +19,12 @@ const SignInForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    sessionStorage.setItem("email", props.email);
     signInWithEmailAndPassword(auth, props.email, props.password)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
+        sessionStorage.setItem("hasSignedIn", "true");
         props.setHasSignedIn(true);
         props.setEmail("");
         props.setPassword("");

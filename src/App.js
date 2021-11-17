@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import AnimeList from "./pages/MyAnimeList";
 import UserButtons from "./components/UserButtons";
@@ -51,6 +51,13 @@ const App = () => {
     const userList = userSnapshot.docs.map((doc) => doc.data());
     return userList;
   }
+
+  useEffect(() => {
+    const userStatus = sessionStorage.getItem("hasSignedIn");
+    if (userStatus === "true") setHasSignedIn(true);
+    else setHasSignedIn(false);
+    setEmail(sessionStorage.getItem("email"));
+  }, []);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
