@@ -8,8 +8,8 @@ const NavBar = (props) => {
 
   return (
     <nav className=" navbar navbar-expand-md navbar-dark fixed-top">
-      <div className="funFont align-items-center justify-content-start pt-3 container ">
-        <div className="navbar-brand d-flex justify-content-end">
+      <div className="funFont container">
+        <div className="navbar-brand d-flex">
           <img src={logo} alt="logo" />
           <span id="main-title-text">My Anime List</span>
         </div>

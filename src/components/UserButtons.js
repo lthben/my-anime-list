@@ -41,7 +41,7 @@ const UserButtons = (props) => {
     </React.Fragment>
   );
 
-  console.log("props.hasSignedIn: ", props.hasSignedIn);
+  // console.log("props.hasSignedIn: ", props.hasSignedIn);
 
   const signedInJSX = (
     <React.Fragment>

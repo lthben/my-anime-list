@@ -27,7 +27,7 @@ const Search = (props) => {
   return (
     <React.Fragment>
       <form className="my-form" id="search-form" onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="">
           <input
             type="text"
             className="form-control funFont"
